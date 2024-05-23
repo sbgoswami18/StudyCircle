@@ -42,7 +42,7 @@ exports.resetPasswordToken = async (req, res) => {
         console.log("updatedDetails ", updatedDetails);
 
         // Create url
-        const url = `http://localhost:3000/update-password/${token}`;
+        const url = `https://studycircle-frontend.vercel.app/update-password/${token}`;
 
         // Send mail with url
         await mailSender(
