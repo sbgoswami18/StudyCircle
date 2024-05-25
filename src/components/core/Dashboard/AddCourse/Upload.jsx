@@ -57,6 +57,10 @@ export default function Upload({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedFile, setValue]) // Here there is no need of this setValue in dependencies array this is redundent.
 
+  const handleBrowseClick = () => {
+    inputRef.current.click();
+  };
+
   return (
     <div className="flex flex-col space-y-2">
       <label className="text-sm text-richblack-5" htmlFor={name}>
@@ -98,7 +102,9 @@ export default function Upload({
             {...getRootProps()}
           >
             <input {...getInputProps()} ref={inputRef} />
-            <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800">
+            <div className="grid aspect-square w-14 place-items-center rounded-full bg-pure-greys-800"
+              onClick={handleBrowseClick}
+            >
               <FiUploadCloud className="text-2xl text-yellow-50" />
             </div>
             <p className="mt-2 max-w-[200px] text-center text-sm text-richblack-200">
