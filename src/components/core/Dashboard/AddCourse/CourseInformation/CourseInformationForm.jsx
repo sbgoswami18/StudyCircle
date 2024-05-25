@@ -248,7 +248,7 @@ export default function CourseInformationForm() {
         )}
       </div>
       {/* Course Tags */}
-      <ChipInput
+      {/*<ChipInput
         label="Tags"
         name="courseTags"
         placeholder="Enter Tags and press Enter"
@@ -256,7 +256,7 @@ export default function CourseInformationForm() {
         errors={errors}
         setValue={setValue}
         getValues={getValues} // Here there is no need of this getValues this is redundent. Because we haven't use it in ChipInput component.
-      />
+      />*/}
       {/* Course Thumbnail Image */}
       <Upload
         name="courseImage"
