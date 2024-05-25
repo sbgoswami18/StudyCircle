@@ -18,7 +18,7 @@ const Home = () => {
       {/* section 1 */}
       <div className=' relative mx-auto flex flex-col w-11/12 items-center max-w-maxContent text-white justify-between'>
         <Link to={"/signup"}>
-            <div className='group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit'>
+            <div className='group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit shadow-md shadow-blue-500'>
                 <div className='flex flex-row items-center gap-2 rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900'>
                     <p>Become an Instructor</p>
                     <FaArrowRight />
@@ -59,7 +59,7 @@ const Home = () => {
         {/* Code Section 1 */}
         <div>
           <CodeBlocks 
-            position = {"lg: flex-row"}
+            position = {"lg:flex-row"}
             heading = {
               <div className='text-4xl font-semibold'>
                 Unlock Your
@@ -87,7 +87,7 @@ const Home = () => {
 
             codeblock={`<!DOCTYPE html>\n<html lang="en">\n<head>\n<title>This is myPage</title>\n</head>\n<body>\n<h1><a href="/">Header</a></h1>\n<nav> <a href="/one">One</a> <a href="/two">Two</a> <a href="/three">Three</a>\n</nav>\n</body>`}
             codeColor={"text-yellow-25"}
-            // HW -> BG gradient
+            // backgroudGradient={<div className="codeblock1 absolute"></div>}
           />
         </div>
 
@@ -121,7 +121,7 @@ const Home = () => {
 
             codeblock={`import React from "react";\n import CTAButton from "./Button";\nimport TypeAnimation from "react-type";\nimport { FaArrowRight } from "react-icons/fa";\n\nconst Home = () => {\nreturn (\n<div>Home</div>\n)\n}\nexport default Home;`}
             codeColor={"text-white"}
-            // HW -> BG gradient
+            // backgroudGradient={<div className="codeblock2 absolute"></div>}
           />
         </div>
 
@@ -151,13 +151,13 @@ const Home = () => {
         </div>
 
         <div className='mx-auto w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-7'>
-          <div className='flex flex-row gap-5 mb-10 mt-[95px]'>
-            <div className='text-4xl font-semibold w-[45%]'>
+          <div className='flex flex-col lg:flex-row justify-between gap-5 mb-10 mt-[95px] lg:gap-0'>
+            <div className='text-4xl font-semibold lg:w-[45%]'>
               Get the Skills you need for a
               <HighlightText text={"Job that is in demand"} />
             </div>
             
-            <div className='flex flex-col gap-10 w-[40%] items-start'>
+            <div className='flex flex-col gap-10 lg:w-[40%] items-start'>
               <div className='text-[16px]'>
                 The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
               </div>
@@ -181,7 +181,7 @@ const Home = () => {
       <div className='w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white'>
         <InstructorSection />
 
-        <h1 className='text-center text-4xl font-semobold mt-10'>
+        <h1 className='text-center text-4xl font-semibold'>
           Reviews from other learners
         </h1>
         <ReviewSlider />

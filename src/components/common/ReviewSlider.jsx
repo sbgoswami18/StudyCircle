@@ -39,13 +39,27 @@ function ReviewSlider() {
     <div className="text-white">
       <div className="my-[50px] h-[184px] max-w-maxContentTab lg:max-w-maxContent">
         <Swiper
-          slidesPerView={4}
-          spaceBetween={25}
+          slidesPerView={1}
+          spaceBetween={10}
           loop={true}
           freeMode={true}
           autoplay={{
             delay: 2500,
             disableOnInteraction: false,
+          }}
+          breakpoints={{
+            640: {
+              slidesPerView: 2,
+              spaceBetween: 15
+            },
+            768: {
+              slidesPerView: 3,
+              spaceBetween: 20
+            },
+            1024: {
+              slidesPerView: 4,
+              spaceBetween: 25
+            }
           }}
           modules={[FreeMode, Pagination, Autoplay]}
           className="w-full "

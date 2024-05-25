@@ -4,7 +4,6 @@ import { HiOutlineGlobeAlt } from "react-icons/hi"
 import  ReactMarkdown  from "react-markdown"
 import { useDispatch, useSelector } from "react-redux"
 import { useNavigate, useParams } from "react-router-dom"
-
 import ConfirmationModal from "../components/common/ConfirmationModal"
 import Footer from "../components/common/Footer"
 import RatingStars from "../components/common/RatingStars"
@@ -15,6 +14,9 @@ import { fetchCourseDetails } from "../services/operations/courseDetailsAPI"
 import { buyCourse } from "../services/operations/studentFeaturesAPI"
 import GetAvgRating from "../utils/avgRating"
 import Error from "./Error"
+import { addToCart } from "../slices/cartSlice"
+import { toast } from "react-hot-toast"
+import { ACCOUNT_TYPE } from "../../src/utils/constants"
 
 function CourseDetails() {
   const { user } = useSelector((state) => state.profile)
@@ -116,6 +118,25 @@ function CourseDetails() {
     })
   }
 
+  const handleAddToCart = () => {
+    if (user && user?.accountType === ACCOUNT_TYPE.INSTRUCTOR) {
+      toast.error("You are an Instructor. You can't buy a course.")
+      return
+    }
+    if (token) {
+      dispatch(addToCart(response?.data?.courseDetails))
+      return
+    }
+    setConfirmationModal({
+      text1: "You are not logged in!",
+      text2: "Please login to add To Cart",
+      btn1Text: "Login",
+      btn2Text: "Cancel",
+      btn1Handler: () => navigate("/login"),
+      btn2Handler: () => setConfirmationModal(null),
+    })
+  }
+
   if (paymentLoading) {
     // console.log("payment loading")
     return (
@@ -127,7 +148,7 @@ function CourseDetails() {
 
   return (
     <>
-      <div className={`relative w-full bg-richblack-800`}>
+      <div className={`relative w-full bg-richblack-800 pt-20 lg:pt-10`}>
         {/* Hero Section */}
         <div className="mx-auto box-content px-4 lg:w-[1260px] 2xl:relative ">
           <div className="mx-auto grid min-h-[450px] max-w-maxContentTab justify-items-center py-8 lg:mx-0 lg:justify-items-start lg:py-0 xl:max-w-[810px]">
@@ -174,10 +195,23 @@ function CourseDetails() {
               <p className="space-x-3 pb-4 text-3xl font-semibold text-richblack-5">
                 Rs. {price}
               </p>
-              <button className="yellowButton" onClick={handleBuyCourse}>
-                Buy Now
+              <button
+                className="yellowButton"
+                onClick={
+                  user && response?.data?.courseDetails?.studentsEnrolled.includes(user?._id)
+                    ? () => navigate("/dashboard/enrolled-courses")
+                    : handleBuyCourse
+                }
+              >
+                {user && response?.data?.courseDetails?.studentsEnrolled.includes(user?._id)
+                  ? "Go To Course"
+                  : "Buy Now"}
               </button>
-              <button className="blackButton">Add to Cart</button>
+              {(!user || !response?.data?.courseDetails?.studentsEnrolled.includes(user?._id)) && (
+                <button onClick={handleAddToCart} className="blackButton">
+                  Add to Cart
+                </button>
+              )}
             </div>
           </div>
           {/* Courses Card */}

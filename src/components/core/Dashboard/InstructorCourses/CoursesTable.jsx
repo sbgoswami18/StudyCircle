@@ -72,13 +72,13 @@ export default function CoursesTable({ courses, setCourses }) {
                 key={course._id}
                 className="flex gap-x-10 border-b border-richblack-800 px-6 py-8"
               >
-                <Td className="flex flex-1 gap-x-4">
+                <Td className="flex flex-1 gap-x-4 mb-2 md:mb-0">
                   <img
                     src={course?.thumbnail}
                     alt={course?.courseName}
                     className="h-[148px] w-[220px] rounded-lg object-cover"
                   />
-                  <div className="flex flex-col justify-between">
+                  <div className="flex flex-col justify-between gap-y-2 md:gap-y-0">
                     <p className="text-lg font-semibold text-richblack-5">
                       {course.courseName}
                     </p>
@@ -115,7 +115,7 @@ export default function CoursesTable({ courses, setCourses }) {
                 <Td className="text-sm font-medium text-richblack-100">
                   ₹{course.price}
                 </Td>
-                <Td className="text-sm font-medium text-richblack-100 ">
+                <Td className="text-sm font-medium text-richblack-100 mb-10 md:mb-0">
                   <button
                     disabled={loading}
                     onClick={() => {

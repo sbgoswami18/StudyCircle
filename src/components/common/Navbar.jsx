@@ -10,6 +10,8 @@ import { categories } from '../../services/apis';
 import { IoIosArrowDropdownCircle } from "react-icons/io";
 import { ACCOUNT_TYPE } from "../../utils/constants"
 import ProfileDropdown from '../core/Auth/ProfileDropdown';
+import {ImCross} from "react-icons/im"
+import SmallScreenNavbar from "./SmallScreenNavbar"
 
 const Navbar = () => {
 
@@ -22,7 +24,10 @@ const Navbar = () => {
     const [subLinks, setSubLinks] = useState([]);
     const [loading, setLoading] = useState(false);
 
+    const [isClose, setIsClose] = useState(false);
+
     const fetchSublinks = async() => {
+        setLoading(true);
         try {
             const result = await apiConnector("GET", categories.CATEGORIES_API);
             console.log("Printing subLinks result ", result);
@@ -31,6 +36,7 @@ const Navbar = () => {
         catch (error) {
             console.log("Could not fetch the category list.");
         }
+        setLoading(false);
     }
 
     useEffect(() => {
@@ -41,16 +47,42 @@ const Navbar = () => {
         return matchPath({path: route}, location.pathname);
     }
 
+    const handleCrossButton = () => { 
+        setIsClose(prevState => !prevState);  
+    }
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth >= 768) {
+                setIsClose(false);
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+
+        // return () => {
+        //     window.removeEventListener('resize', handleResize);
+        // };
+    }, []);
+
   return (
-    <div className={`flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700 ${location.pathname !== "/" ? "bg-richblack-800" : ""} transition-all duration-200`}>
+    <div
+        className={ `flex h-14 items-center justify-center border-b-[1px] border-b-richblack-700
+                    ${ location.pathname !== "/" ? "bg-richblack-800" : "" }
+                    ${ location.pathname === "/" ?  "fixed w-screen z-[1000]  bg-richblack-900" : "" }
+                    ${ location.pathname === "/about" ? "fixed w-screen z-[1000]  bg-richblack-700" : "" }  
+                    ${ location.pathname === "/contact" || matchRoute("/catalog/:catalogName") ||  matchRoute("/courses/:couseId") ? "fixed w-screen z-[1000]  bg-richblack-800" : "" }
+                    transition-all duration-200` 
+                }
+    >
         <div className=' flex w-11/12 max-w-maxContent items-center justify-between'>
             {/* logo */}
             <Link to="/">
-                <img src={logo} width={160} height={42} loading='lazy' />
+                <img src={logo} alt="Logo" width={160} height={42} loading='lazy' />
             </Link>
 
             {/* Navlinks */}
-            <nav>
+            <nav className='hidden md:block'>
                 <ul className='flex gap-x-6 text-richblack-25'>
                     {
                         NavbarLinks.map((link, index) => (
@@ -145,9 +177,33 @@ const Navbar = () => {
                     token !== null && <ProfileDropdown />
                 }
             </div>
-            <button className='mr-4 md:hidden'>
+
+            {/* <button className='mr-4 md:hidden'>
                 <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
-            </button>
+            </button> */}
+
+            {
+                isClose === false ? (
+                    <button className="mr-4 md:hidden"
+                        onClick={handleCrossButton}
+                    >
+                        <AiOutlineMenu fontSize={24} fill="#AFB2BF" />
+                    </button>
+                ) :
+                (
+                    <button className="mr-4 md:hidden"
+                        onClick={handleCrossButton}
+                    >
+                        <ImCross fontSize={24} fill="#AFB2BF" />
+                    </button>
+                )
+            }
+            {
+                isClose && <SmallScreenNavbar 
+                                isClose={isClose}
+                                handleCrossButton={handleCrossButton}
+                            />
+            }
         </div>
     </div>
   )

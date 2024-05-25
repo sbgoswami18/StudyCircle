@@ -51,18 +51,20 @@ export default function Instructor() {
         <div className="spinner"></div>
       ) : courses.length > 0 ? (
         <div>
-          <div className="my-4 flex h-[450px] space-x-4">
+          <div className="my-4 flex lg:flex-row flex-col space-x-4 gap-y-4 lg:gap-y-0">
             {/* Render chart / graph */}
-            {totalAmount > 0 || totalStudents > 0 ? (
-              <InstructorChart courses={instructorData} />
-            ) : (
-              <div className="flex-1 rounded-md bg-richblack-800 p-6">
-                <p className="text-lg font-bold text-richblack-5">Visualize</p>
-                <p className="mt-4 text-xl font-medium text-richblack-50">
-                  Not Enough Data To Visualize
-                </p>
-              </div>
-            )}
+            <div className="w-full">
+              {totalAmount > 0 || totalStudents > 0 ? (
+                <InstructorChart courses={instructorData} />
+              ) : (
+                <div className="flex-1 rounded-md bg-richblack-800 p-6">
+                  <p className="text-lg font-bold text-richblack-5">Visualize</p>
+                  <p className="mt-4 text-xl font-medium text-richblack-50">
+                    Not Enough Data To Visualize
+                  </p>
+                </div>
+              )}
+            </div>
             {/* Total Statistics */}
             <div className="flex min-w-[250px] flex-col rounded-md bg-richblack-800 p-6">
               <p className="text-lg font-bold text-richblack-5">Statistics</p>
@@ -104,11 +106,11 @@ export default function Instructor() {
                     alt={course.courseName}
                     className="h-[201px] w-full rounded-md object-cover"
                   />
-                  <div className="mt-3 w-full">
+                  <div className="mt-3 w-full flex flex-col justify-center items-center text-center">
                     <p className="text-sm font-medium text-richblack-50">
                       {course.courseName}
                     </p>
-                    <div className="mt-1 flex items-center space-x-2">
+                    <div className="mt-1 flex items-center space-x-2 flex-col md:flex-row">
                       <p className="text-xs font-medium text-richblack-300">
                         {course.studentsEnrolled.length} students
                       </p>
