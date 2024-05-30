@@ -8,6 +8,8 @@ import Course_Card from '../components/core/Catalog/Course_Card';
 import CourseSlider from '../components/core/Catalog/CourseSlider';
 import { useSelector } from "react-redux"
 import Error from "./Error"
+import { MdOutlineRateReview } from 'react-icons/md';
+import ReviewSlider from '../components/common/ReviewSlider';
 
 const Catalog = () => {
 
@@ -132,6 +134,15 @@ const Catalog = () => {
                   ))}
               </div>
             </div>
+          </div>
+
+          <div className="relative mx-auto my-20 w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
+            {/* Reviws from Other Learner */}
+            <h1 className="text-center text-4xl font-semibold mt-8 flex justify-center items-center gap-x-3">
+              Reviews from other learners <MdOutlineRateReview className='text-yellow-25' />
+            </h1>
+            {/* <ReviewSlider /> */}
+            <ReviewSlider />
           </div>
     
           <Footer />

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaArrowRight } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 import HighlightText from '../components/core/HomePage/HighlightText';
@@ -12,13 +12,58 @@ import Footer from '../components/common/Footer';
 import ExploreMore from '../components/core/HomePage/ExploreMore';
 import ReviewSlider from '../components/common/ReviewSlider';
 
+// background random images
+import backgroundImg1 from '../assets/Images/random bg img/coding bg1.jpg'
+import backgroundImg2 from '../assets/Images/random bg img/coding bg2.jpg'
+import backgroundImg3 from '../assets/Images/random bg img/coding bg3.jpg'
+import backgroundImg4 from '../assets/Images/random bg img/coding bg4.jpg'
+import backgroundImg5 from '../assets/Images/random bg img/coding bg5.jpg'
+import backgroundImg6 from '../assets/Images/random bg img/coding bg6.jpeg'
+import backgroundImg7 from '../assets/Images/random bg img/coding bg7.jpg'
+import backgroundImg8 from '../assets/Images/random bg img/coding bg8.jpeg'
+import backgroundImg9 from '../assets/Images/random bg img/coding bg9.jpg'
+import backgroundImg10 from '../assets/Images/random bg img/coding bg10.jpg'
+import backgroundImg111 from '../assets/Images/random bg img/coding bg11.jpg'
+import { MdOutlineRateReview } from 'react-icons/md';
+
+
+const randomImges = [
+    backgroundImg1,
+    backgroundImg2,
+    backgroundImg3,
+    backgroundImg4,
+    backgroundImg5,
+    backgroundImg6,
+    backgroundImg7,
+    backgroundImg8,
+    backgroundImg9,
+    backgroundImg10,
+    backgroundImg111,
+];
+
 const Home = () => {
+
+  // get background random images
+  const [backgroundImg, setBackgroundImg] = useState(null);
+
+  useEffect(() => {
+      const bg = randomImges[Math.floor(Math.random() * randomImges.length)]
+      setBackgroundImg(bg);
+  }, [])
+
   return (
     <div>
+        {/* background random image */}
+        <div>
+          <div className="w-full h-[660px] absolute top-[3rem] left-0 opacity-[0.3] overflow-hidden object-cover ">
+            <img src={backgroundImg} alt="Background" className="w-full h-full object-cover" />
+            <div className="absolute left-0 bottom-0 w-full h-[250px] opacity_layer_bg "></div>
+          </div>
+        </div>
       {/* section 1 */}
       <div className=' relative mx-auto flex flex-col w-11/12 items-center max-w-maxContent text-white justify-between'>
         <Link to={"/signup"}>
-            <div className='group mt-16 p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit shadow-md shadow-blue-500'>
+            <div className='group mt-[7rem] md:mt-[10rem] lg:mt-[15rem] p-1 mx-auto rounded-full bg-richblack-800 font-bold text-richblack-200 transition-all duration-200 hover:scale-95 w-fit shadow-md shadow-blue-500'>
                 <div className='flex flex-row items-center gap-2 rounded-full px-10 py-[5px] transition-all duration-200 group-hover:bg-richblack-900'>
                     <p>Become an Instructor</p>
                     <FaArrowRight />
@@ -45,7 +90,7 @@ const Home = () => {
           </CTAButton>
         </div>
 
-        <div className=' mx-3 my-12 shadow-[10px_-5px_50px_-5px] shadow-blue-200'>
+        {/* <div className=' mx-3 my-12 shadow-[10px_-5px_50px_-5px] shadow-blue-200'>
           <video
             // className='shadow-[20px_20px_rgba(255,255,255)]'
             muted
@@ -54,10 +99,10 @@ const Home = () => {
           >
             <source src={Banner} type='video/mp4' />
           </video>
-        </div>
+        </div> */}
 
         {/* Code Section 1 */}
-        <div>
+        <div className='mt-[5rem] md:mt-[10rem] lg:mt-[12rem]'>
           <CodeBlocks 
             position = {"lg:flex-row"}
             heading = {
@@ -181,8 +226,8 @@ const Home = () => {
       <div className='w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white'>
         <InstructorSection />
 
-        <h1 className='text-center text-4xl font-semibold'>
-          Reviews from other learners
+        <h1 className='text-center text-4xl font-semibold flex justify-center items-center gap-x-3'>
+          Reviews from other learners <MdOutlineRateReview className='text-yellow-25' />
         </h1>
         <ReviewSlider />
       </div>

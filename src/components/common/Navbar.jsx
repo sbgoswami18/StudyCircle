@@ -86,11 +86,14 @@ const Navbar = () => {
                 <ul className='flex gap-x-6 text-richblack-25'>
                     {
                         NavbarLinks.map((link, index) => (
-                            <li key={index}>
+                            <li key={index} className='flex items-center'>
                                 {
                                     link.title === "Catalog" ? (
                                         <>
-                                            <div className=' relative flex items-center gap-2 group'>
+                                            <div className={`group relative flex cursor-pointer items-center gap-2 ${matchRoute("/catalog/:catalogName")
+                                                ? "bg-yellow-25 text-black rounded-xl p-1 px-3"
+                                                : "text-richblack-25 rounded-xl p-1 px-3"}`}
+                                            >
                                                 <p>{link.title}</p>
                                                 <IoIosArrowDropdownCircle />
 
@@ -124,7 +127,7 @@ const Navbar = () => {
                                         </>
                                     ) : (
                                         <Link to={link?.path}>
-                                            <p className={`${matchRoute(link?.path) ? "text-yellow-25" : "text-richblack-25"}`}>
+                                            <p className={`${matchRoute(link?.path) ? "bg-yellow-25 text-black" : "text-richblack-25"} rounded-xl p-1 px-3`}>
                                                 {link.title}
                                             </p>
                                         </Link>

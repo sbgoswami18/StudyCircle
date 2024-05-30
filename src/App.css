@@ -81,3 +81,8 @@ html, body {
 .section_heading {
     @apply text-2xl font-bold text-richblack-5 lg:text-4xl;
 }
+
+/* used in home.jsx - random background  */
+.opacity_layer_bg {
+    background: linear-gradient(180deg, rgba(4, 21, 45, 0) 0%, #04152d 79.17%);
+}
