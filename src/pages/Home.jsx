@@ -223,11 +223,11 @@ const Home = () => {
       </div>
 
       {/* section 3 */}
-      <div className='w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white'>
+      <div className='mt-14 w-11/12 mx-auto max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white'>
         <InstructorSection />
 
-        <h1 className='text-center text-4xl font-semibold flex justify-center items-center gap-x-3'>
-          Reviews from other learners <MdOutlineRateReview className='text-yellow-25' />
+        <h1 className='text-center text-4xl font-semibold flex justify-center items-center gap-x-3 mt-8'>
+          Reviews from other learners <MdOutlineRateReview className='hidden md:block text-yellow-25' />
         </h1>
         <ReviewSlider />
       </div>

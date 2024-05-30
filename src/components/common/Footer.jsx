@@ -168,7 +168,7 @@ const Footer = () => {
             </div>
 
           <div className="text-center">
-            Made with ❤️ CodeHelp © 2024 Studynotion
+            Made By ❤️ Shivam Goswami © 2024 StudyCircle
         </div>
         </div>
       </div>
