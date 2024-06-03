@@ -17,13 +17,12 @@ import backgroundImg1 from '../assets/Images/random bg img/coding bg1.jpg'
 import backgroundImg2 from '../assets/Images/random bg img/coding bg2.jpg'
 import backgroundImg3 from '../assets/Images/random bg img/coding bg3.jpg'
 import backgroundImg4 from '../assets/Images/random bg img/coding bg4.jpg'
-import backgroundImg5 from '../assets/Images/random bg img/coding bg5.jpg'
-import backgroundImg6 from '../assets/Images/random bg img/coding bg6.jpeg'
-import backgroundImg7 from '../assets/Images/random bg img/coding bg7.jpg'
-import backgroundImg8 from '../assets/Images/random bg img/coding bg8.jpeg'
+import backgroundImg5 from '../assets/Images/random bg img/coding bg5.jpeg'
+import backgroundImg6 from '../assets/Images/random bg img/coding bg6.jpg'
+import backgroundImg7 from '../assets/Images/random bg img/coding bg7.jpeg'
+import backgroundImg8 from '../assets/Images/random bg img/coding bg8.jpg'
 import backgroundImg9 from '../assets/Images/random bg img/coding bg9.jpg'
 import backgroundImg10 from '../assets/Images/random bg img/coding bg10.jpg'
-import backgroundImg111 from '../assets/Images/random bg img/coding bg11.jpg'
 import { MdOutlineRateReview } from 'react-icons/md';
 
 
@@ -38,7 +37,6 @@ const randomImges = [
     backgroundImg8,
     backgroundImg9,
     backgroundImg10,
-    backgroundImg111,
 ];
 
 const Home = () => {
@@ -204,7 +202,7 @@ const Home = () => {
             
             <div className='flex flex-col gap-10 lg:w-[40%] items-start'>
               <div className='text-[16px]'>
-                The modern StudyNotion is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
+                The modern StudyCircle is the dictates its own terms. Today, to be a competitive specialist requires more than professional skills.
               </div>
               <CTAButton active = {true} linkto = {"/signup"}>
                 <div>
